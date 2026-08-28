@@ -56,9 +56,8 @@ def rotate_matrix_90(matrix):
     # n x n 크기의 0으로 초기화된 배열
     rotated = []
 
-    row = [0] * n
     for i in range(n):
-        
+        row = [0] * n
         rotated.append(row)     # row가 하나의 객체라서 반복문 안쪽에서 생성해야 함
 
     i = 0

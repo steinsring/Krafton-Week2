@@ -56,9 +56,9 @@ def gcd_iterative(a, b):
     # TODO: 반복문으로 구현
     # b가 0이 될 때까지 반복
     pass
-
     
-    while b == 0:
+    
+    while b != 0:
         temp = b
         b = a % b
         a = temp
@@ -108,7 +108,7 @@ def extended_gcd(a, b):
             return (num, by // b)   # (x, y)
 
         
-        return backtraking(num - 1)
+        return backtraking(num + 1)
 
     #g = gcd(a, b)
     result = (gcd(a,b),) + backtraking(num)
