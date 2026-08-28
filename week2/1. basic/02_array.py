@@ -49,7 +49,32 @@ def rotate_matrix_90(matrix):
     # TODO: 원본 배열의 각 요소를 회전된 위치에 배치하세요
     # 힌트: (i, j) 위치의 요소는 회전 후 (j, n-1-i) 위치로 이동
     pass
-    
+
+    # 설계 : 원소가 0인 n x n 크기의 2차원 배열을 만들고, 
+    #        모든 원소를 순회하며 rotated[j, n-1-i]위치에 원래 배열의 값을 넣는다.
+
+    # n x n 크기의 0으로 초기화된 배열
+    rotated = []
+
+    row = [0] * n
+    for i in range(n):
+        
+        rotated.append(row)     # row가 하나의 객체라서 반복문 안쪽에서 생성해야 함
+
+    i = 0
+    j = 0
+
+    # 모든 원소 순회
+    for row in matrix:
+        for elem in row:
+            rotated[j][n-1-i] = elem
+            j += 1
+
+        i += 1
+        j = 0
+
+
+
     return rotated
 
 def print_matrix(matrix):

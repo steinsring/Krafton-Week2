@@ -42,8 +42,26 @@ def is_palindrome(s):
     # 방법1: 문자열을 뒤집어서 비교 ([::-1] 사용)
     # 방법2: 양 끝 인덱스를 이용한 투 포인터 방식
     pass
-    
-    #return False
+
+    low_s = s.lower()               # 문자열의 내용을 전부 소문자로
+    delete_blank_s = []
+
+    for ch in low_s:
+        if ch.isalnum():
+            delete_blank_s.append(ch)
+
+    reverse_s = delete_blank_s[::-1]     # 거꾸로된 문자열
+
+    is_same = True
+
+    for i in range(len(delete_blank_s)):
+        if delete_blank_s[i] != reverse_s[i]:
+            is_same = False
+
+    #print(delete_blank_s)
+    #print(reverse_s)
+
+    return is_same
 
 # 테스트 케이스
 if __name__ == "__main__":
