@@ -91,6 +91,26 @@ print_list() 가 해야 할 일:
             current 를 current.next 로 이동.
 """
 
+        # ─── Level 1: 리스트가 비어 있는 경우 ────────────────────────
+        # 힌트: self.head 가 None 이면, head 에 new_node 를 바로 꽂고 return.
+        # TODO: 아래 pass 를 지우고 if 문을 완성하세요.
+        #   if self.head is None:
+        #       self.head = new_node
+        #       return
+
+
+        # ─── Level 2: 마지막 노드 찾기 ──────────────────────────────
+        # head 부터 시작해서 next 가 None 이 될 때까지 따라갑니다.
+        # 즉 "current.next 가 있는 동안" 계속 이동.
+
+        # TODO: while 문으로 current 를 마지막 노드까지 이동시키세요.
+        #   while current.next is not None:
+        #       current = current.next
+
+
+        # ─── Level 3: 마지막 노드의 next 에 새 노드를 붙이기 ─────────
+        # 위 반복문이 끝나면 current 가 곧 마지막 노드입니다.
+        # TODO: current.next = new_node
 class Node:
     """
     연결 리스트의 노드 (한 칸 = 데이터 + 다음 화살표)
@@ -113,6 +133,7 @@ class LinkedList:
     def __init__(self):
         self.head = None
 
+    # 새로운 노드를 리스트에 추가
     def append(self, data):
         """
         리스트 끝에 노드 추가
@@ -127,29 +148,24 @@ class LinkedList:
                                        ──append(7)──▶
               head ─▶ [1|●]─▶[2|●]─▶[7|None]
         """
+
         new_node = Node(data)
 
-        # ─── Level 1: 리스트가 비어 있는 경우 ────────────────────────
-        # 힌트: self.head 가 None 이면, head 에 new_node 를 바로 꽂고 return.
-        # TODO: 아래 pass 를 지우고 if 문을 완성하세요.
-        #   if self.head is None:
-        #       self.head = new_node
-        #       return
-        pass
+        # 노드가 없으면 바로 추가
+        if self.head == None:
+            self.head = new_node
+            return
 
-        # ─── Level 2: 마지막 노드 찾기 ──────────────────────────────
-        # head 부터 시작해서 next 가 None 이 될 때까지 따라갑니다.
-        # 즉 "current.next 가 있는 동안" 계속 이동.
+        
+        # 마지막 노드를 찾고
         current = self.head
-        # TODO: while 문으로 current 를 마지막 노드까지 이동시키세요.
-        #   while current.next is not None:
-        #       current = current.next
-        pass
+        while True:
+            if current.next == None:
+                current.next = new_node
+                break
 
-        # ─── Level 3: 마지막 노드의 next 에 새 노드를 붙이기 ─────────
-        # 위 반복문이 끝나면 current 가 곧 마지막 노드입니다.
-        # TODO: current.next = new_node
-        pass
+            current = current.next
+
 
     def print_list(self):
         """
@@ -173,6 +189,11 @@ class LinkedList:
         #       current = current.next
         pass
 
+        current = self.head
+        while current != None:
+            values.append(current.data)
+            current = current.next
+            
         return values
 
 

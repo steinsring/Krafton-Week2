@@ -22,6 +22,19 @@
 - 배열을 반으로 나누어 재귀 호출
 - 왼쪽과 오른쪽의 최댓값 중 큰 값 반환
 """
+    # TODO: base case - 원소가 하나면 그 값 반환
+
+    
+    # TODO: 중간 지점 계산
+
+    
+    # TODO: 왼쪽 절반의 최댓값
+
+        
+    # TODO: 오른쪽 절반의 최댓값
+
+    
+    # TODO: 둘 중 큰 값 반환
 
 def find_max_divide_conquer(arr, left, right):
     """
@@ -35,20 +48,21 @@ def find_max_divide_conquer(arr, left, right):
     Returns:
         최댓값
     """
-    # TODO: base case - 원소가 하나면 그 값 반환
-    pass
+    # 원소가 하나일 경우 그 값이 최대값
+    # mid를 계산하고 mid를 기준으로 배열을 둘로 나눈다.
+    # 리턴된 값을 기준으로 비교해서 큰 값을 리턴
+
+    if left == right:
+        return arr[left]
     
-    # TODO: 중간 지점 계산
-    pass
+    mid = (left + right) // 2
+
+    left_max = find_max_divide_conquer(arr, left, mid)
+    right_max = find_max_divide_conquer(arr, mid + 1, right)
+
+    return max(left_max, right_max)
     
-    # TODO: 왼쪽 절반의 최댓값
-    pass
-        
-    # TODO: 오른쪽 절반의 최댓값
-    pass
-    
-    # TODO: 둘 중 큰 값 반환
-    pass
+
 
 # 테스트 케이스
 if __name__ == "__main__":

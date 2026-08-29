@@ -100,18 +100,46 @@ def extended_gcd(a, b):
     if b == 0:
         return (a, 1, 0)
 
-    num = 0
-    def backtraking(num):
-        # y가 b로 나누어 떨어지면 정수
-        by = (gcd(a, b) - a * num) 
-        if by % b == 0:
-            return (num, by // b)   # (x, y)
+    # # x를 양수로 가정하고 풀어도 괜찮나?
+    # # x와 y가 둘 다 양수일 수는 없다.
+    # # y를 음수로 가정하면 x는 양수이고, ax와 by의 순서만 바꾸면 해결될일?
+    # num = 0
+    # xy = []
+    # def backtraking(num):
+    #     # 답을 찾은 경우
+    #     if len(xy) > 0:
+    #         return
+    #     # y가 b로 나누어 떨어지면 정수
+    #     by = (gcd(a, b) - a * num) 
+    #     if by % b == 0:
+    #         xy.append(num)
+    #         xy.append(by // b) # (x, y)
+    #         return
 
-        
-        return backtraking(num + 1)
+    # backtraking(num + 1)
+    # backtraking(num - 1)
+    # #g = gcd(a, b)
+    # result = (gcd(a,b),) + tuple(xy)
 
-    #g = gcd(a, b)
-    result = (gcd(a,b),) + backtraking(num)
+    # ax + by = gcd(a, b) = gcd(b, a % b)
+    # bx_1 + (a % b)y_1 = gcd(a, b) = gcd(a % b, b % (a % b))
+    # (a % b)x_2 + (b % (a % b))y_2 = gcd(a, b)
+    # ...
+    # a_n * 1 + 0 * y_n = a
+    # 35 × 1 + 15 × -2 = 5
+    # 15 * x_1 + (35 % 15) * y_1 = gcd(15, (35 % 15))
+    # (35 % 15) * x_2 + (15 % (35 % 15)) * y_2 = gcd(5, 0) = 5 = a // x_2 = 1 // y_2 = 0  b = 0
+    # 
+    # ax + by
+    # bx1 + (a % b)y1
+    # bx1 + (a - bq)y1
+    # ay1 + b(x1 - qy1)
+    # x = y1 = 0, y = x1 - qy1 = x1 - (a // b)y1 = 0
+    # 
+    r1 = extended_gcd(b, a % b)
+    x = r1[2]
+    y = r1[1] - (a // b) * r1[2]
+    result = (r1[0], x, y)
     return result
 
 

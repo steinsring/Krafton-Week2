@@ -21,7 +21,21 @@
 - 피벗보다 작은 원소는 왼쪽, 큰 원소는 오른쪽으로 분할
 - 재귀적으로 왼쪽과 오른쪽 부분 정렬
 """
+    # TODO: 피벗을 선택 (일반적으로 마지막 원소)
+ 
+    
+    # TODO: i는 작은 원소들의 마지막 인덱스를 추적
+  
+    
+    # TODO: low부터 high-1까지 순회하면서
+    ## 현재 원소가 피벗보다 작거나 같으면:
+    ##   1. i를 1 증가
+    ##   2. arr[i]와 arr[j]를 교환
+  
+    
+    # TODO: 피벗을 올바른 위치(i+1)에 배치
 
+    
 def partition(arr, low, high):
     """
     배열을 피벗 기준으로 분할하는 함수
@@ -34,22 +48,15 @@ def partition(arr, low, high):
     Returns:
         피벗의 최종 위치 인덱스
     """
-    # TODO: 피벗을 선택 (일반적으로 마지막 원소)
-    pass
-    
-    # TODO: i는 작은 원소들의 마지막 인덱스를 추적
-    pass
-    
-    # TODO: low부터 high-1까지 순회하면서
-    ## 현재 원소가 피벗보다 작거나 같으면:
-    ##   1. i를 1 증가
-    ##   2. arr[i]와 arr[j]를 교환
-    pass
-    
-    # TODO: 피벗을 올바른 위치(i+1)에 배치
-    pass
-    
-    return i + 1
+    pivot = high
+    Final_pivot = low
+    for i in range(low, high - 1):
+        if(arr[i] < arr[pivot]):
+            Final_pivot += 1
+
+        
+
+    return Final_pivot + 1
 
 def quick_sort_helper(arr, low, high):
     """

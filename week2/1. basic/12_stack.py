@@ -24,6 +24,14 @@
 - 닫는 괄호 ')'를 만나면 스택에서 pop
 - 마지막에 스택이 비어있으면 True
 """
+    # TODO: 문자열의 각 문자를 순회
+    ## : 여는 괄호 '('면 스택에 추가
+    ## : 닫는 괄호 ')'면
+    ## 스택이 비어있으면 False 반환
+    ## 아니면 스택에서 pop
+
+    
+    # TODO: 반복이 끝나면 스택이 비어있는지 확인
 
 def is_valid_parentheses(s):
     """
@@ -36,16 +44,20 @@ def is_valid_parentheses(s):
         올바른 괄호면 True, 아니면 False
     """
     stack = []
+
+    for i in s:
+        if i == "(":
+            stack.append(i)
+        elif i == ")" and not stack:
+            return False
+        else:
+            stack.pop(len(stack) - 1)
+
+    if len(stack) > 0:
+        return False
+
+    return True
     
-    # TODO: 문자열의 각 문자를 순회
-    ## : 여는 괄호 '('면 스택에 추가
-    ## : 닫는 괄호 ')'면
-    ## 스택이 비어있으면 False 반환
-    ## 아니면 스택에서 pop
-    pass
-    
-    # TODO: 반복이 끝나면 스택이 비어있는지 확인
-    pass
 
 # 테스트 케이스
 if __name__ == "__main__":
