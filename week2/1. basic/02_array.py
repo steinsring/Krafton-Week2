@@ -60,18 +60,24 @@ def rotate_matrix_90(matrix):
         row = [0] * n
         rotated.append(row)     # row가 하나의 객체라서 반복문 안쪽에서 생성해야 함
 
-    i = 0
-    j = 0
+    # i = 0
+    # j = 0
 
-    # 모든 원소 순회
-    for row in matrix:
-        for elem in row:
-            rotated[j][n-1-i] = elem
-            j += 1
+    # # 모든 원소 순회
+    # for row in matrix:
+    #     for elem in row:
+    #         rotated[j][n-1-i] = elem
+    #         j += 1
 
-        i += 1
-        j = 0
-
+    #     i += 1
+    #     j = 0
+        rotated = [
+            [
+                matrix[i][j]
+                for i in range(n - 1, -1, -1)
+            ]
+            for j in range(n)
+        ]
 
 
     return rotated

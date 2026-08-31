@@ -62,6 +62,19 @@ def hanoi_count(n: int) -> int:
     # TODO: 2^N - 1 을 정수로 반환하세요.
     pass
 
+    return 2**n - 1
+
+def backtracking(k, src, via, dst, result, n):
+
+    if k == 0:
+        return
+
+    if len(result) == hanoi_count(n):
+        return
+
+    backtracking(k - 1, src, dst, via, result, n)
+    result.append((src, dst))
+    backtracking(k - 1, via, src, dst, result, n)
 
 def hanoi_moves(n: int) -> list:
     """
@@ -75,6 +88,15 @@ def hanoi_moves(n: int) -> list:
     # TODO: 그 외에는 재귀로 이동 순서를 만들어 반환하세요.
     pass
 
+    if n > 20 or n == 0:
+        return []
+
+    # 백트래킹으로 가능한 모든 수를 찾고
+    # 그중에서 최소 이동횟수를 반환하면 된다.
+    
+    result = []
+    backtracking(n, 1, 2, 3, result, n)
+    return result
 
 if __name__ == "__main__":
     print("[테스트 1] N=0 (원반 없음, 옮길 것 없음)")

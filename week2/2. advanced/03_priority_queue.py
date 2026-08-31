@@ -44,11 +44,19 @@ def process_emergency_room(patients):
     pass
         
     processed = []
+    for p in patients:
+        p1 = (p[1], p[0])
+        heapq.heappush(heap, p1)
     
     # TODO: 힙이 비어있지 않은 동안 반복
     ## 힙에서 우선순위가 가장 높은 환자 꺼내기
     ## 환자 처리
     pass
+
+    while heap:
+        p = heapq.heappop(heap)
+        print("처리:", p[1], f"(우선순위: {p[0]})")
+        processed.append(p[1])
         
     return processed
 

@@ -48,15 +48,25 @@ def partition(arr, low, high):
     Returns:
         피벗의 최종 위치 인덱스
     """
+    
     pivot = high
-    Final_pivot = low
-    for i in range(low, high - 1):
-        if(arr[i] < arr[pivot]):
-            Final_pivot += 1
+    left = low
+    right = high - 1
+    while left <= right:
 
-        
+        while arr[left] <= arr[pivot] and left <= right:
+            left += 1
 
-    return Final_pivot + 1
+        while arr[pivot] < arr[right] and left <= right:
+            right -=1
+
+        if left < right:
+            arr[left], arr[right] = arr[right], arr[left]
+
+
+    arr[left] , arr[pivot] = arr[pivot], arr[left]
+
+    return left
 
 def quick_sort_helper(arr, low, high):
     """
@@ -72,6 +82,14 @@ def quick_sort_helper(arr, low, high):
     ## 피벗 왼쪽 부분 재귀 정렬
     ## 피벗 오른쪽 부분 재귀 정렬
     pass 
+
+    if low >= high:
+        return 
+
+    mid = partition(arr, low, high)
+
+    quick_sort_helper(arr, low, mid + 1)
+    quick_sort_helper(arr, mid , high)
     
 
 def quick_sort(arr):

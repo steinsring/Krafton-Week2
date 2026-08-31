@@ -54,6 +54,29 @@ N = 8 -> 92      (전통적인 "8-Queens 문제" 의 답)
 - row 가 N 에 도달했다는 것은 모든 행을 무사히 채웠다는 의미이므로 1가지 경우.
 """
 
+def backtracking(row, cols, n):
+
+    # 경우의 수를 찾음
+    if len(cols) == n:
+        return 1
+
+    count = 0
+    # try_col에 퀸을 두는 걸 시도
+    for try_col in range(n):
+        is_confilct = False
+        # 이전 퀸들을 모두 검사
+        for i in range(row):
+            if cols[i] == try_col or abs(cols[i] - try_col) == row - i:
+                is_confilct = True
+
+    # 충돌하지 않았다면 다음 행 진행
+        if not is_confilct:
+            cols.append(try_col)
+            count += backtracking(row + 1, cols, n)
+            cols.pop()
+
+    return count
+    
 
 def n_queens(n: int) -> int:
     """
@@ -69,6 +92,14 @@ def n_queens(n: int) -> int:
     #   place(0)
     #   return count
     pass
+
+    
+    cols = []
+    count = 0
+    count += backtracking(0, cols, n)
+    return count
+
+
 
 
 if __name__ == "__main__":
