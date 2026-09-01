@@ -52,12 +52,13 @@ def process_emergency_room(patients):
     ## 힙에서 우선순위가 가장 높은 환자 꺼내기
     ## 환자 처리
     pass
-
+    #print(type(heap))
     while heap:
         p = heapq.heappop(heap)
         print("처리:", p[1], f"(우선순위: {p[0]})")
         processed.append(p[1])
-        
+
+
     return processed
 
 # 테스트 케이스
