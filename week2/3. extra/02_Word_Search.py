@@ -7,6 +7,7 @@ class Solution:
         # 현재 원소를 추가하고 word와 순차 비교
         # 현재까지 맞으면 통과, 틀리면 pop, back
         result.append(board[row][col])
+        # 방문했는지를 기록하는 리스트
         visited[row][col] = True
         for i in range(len(result)):
             if result[i] != word[i]:
