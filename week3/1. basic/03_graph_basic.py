@@ -40,14 +40,35 @@ def create_graph(vertices, edges, directed=False):
     Returns:
         그래프 딕셔너리
     """
-    # TODO: 빈 그래프 초기화
-    pass
-    
+    # TODO: 빈 그래프 초기화    
     # TODO: 간선 추가
     ## 간선 추가 (u에서 v로)
     ## 무방향 그래프면 반대 방향도 추가
-    pass
-    
+
+    # 간선중복은 set으로 없애면 되지 않을까
+    graph = {}
+    # 정점 설정
+    for v in range(vertices):
+        graph.setdefault(v, set())
+
+    if directed:
+        for e in edges: 
+            graph.setdefault(e[0], set()).add(e[1]) # setdefault는 key가 없으면 defualt값을 넣고, 넣은 값을 반환한다.
+
+        for key in graph:
+            graph[key] = list(graph[key])    # 여기서 왜 sort를 하면 NOne이 나오는가
+
+        return graph
+
+    # 간선 중복을 제거하는 과정
+    for e in edges:
+        graph.setdefault(e[0], set()).add(e[1]) #
+        graph.setdefault(e[1], set()).add(e[0]) # ke
+
+    for key in graph:
+        graph[key] = list(graph[key])    
+
+
     return graph
 
 # 테스트 케이스

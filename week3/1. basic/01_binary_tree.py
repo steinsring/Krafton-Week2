@@ -39,22 +39,28 @@ class TreeNode:
         self.left = None
         self.right = None
 
+def extract_value(result: list, values : list):
+    for i in values:
+        result.append(i)
+
 def preorder(root):
     """전위 순회: 루트 → 왼쪽 → 오른쪽"""
     result = []
     
     # TODO: root가 None이면 빈 리스트 반환
-    pass
-    
     # TODO: 루트 값 추가
-    pass
-    
     # TODO: 왼쪽 서브트리 순회
-    pass
-    
     # TODO: 오른쪽 서브트리 순회
-    pass
     
+    # root가 없으면 빈 리스트
+    if root == None:
+        return []
+
+    # 루트값을 결과에 추가 및 왼 -> 오 순서로 재귀
+    result.append(root.value)
+    extract_value(result, preorder(root.left))
+    extract_value(result, preorder(root.right))
+
     return result
 
 def inorder(root):
@@ -62,17 +68,17 @@ def inorder(root):
     result = []
     
     # TODO: root가 None이면 빈 리스트 반환
-    pass
-    
     # TODO: 왼쪽 서브트리 순회
-    pass
-    
     # TODO: 루트 값 추가
-    pass
-    
     # TODO: 오른쪽 서브트리 순회
-    pass
-    
+
+    if root == None:
+        return []
+
+    extract_value(result, inorder(root.left))
+    result.append(root.value)
+    extract_value(result, inorder(root.right))
+
     return result
 
 def postorder(root):
@@ -80,16 +86,16 @@ def postorder(root):
     result = []
     
     # TODO: root가 None이면 빈 리스트 반환
-    pass
-    
     # TODO: 왼쪽 서브트리 순회
-    pass
-    
     # TODO: 오른쪽 서브트리 순회
-    pass
-    
     # TODO: 루트 값 추가
-    pass
+
+    if root == None:
+        return []
+
+    extract_value(result, postorder(root.left))
+    extract_value(result, postorder(root.right))
+    result.append(root.value)
     
     return result
 

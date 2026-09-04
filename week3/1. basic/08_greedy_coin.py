@@ -46,7 +46,19 @@ def make_change_greedy(change, coins):
     # TODO: 각 동전에 대해 반복
     ## 현재 동전으로 거슬러줄 수 있는 개수 계산    
     ## 개수가 0보다 크면 결과에 추가
-    pass
+    
+    # 그리디로 풀수 있으면 그리디문제, 그렇지 않으면 그리디가 아닌걸로 알고있다
+    # 그리디인걸 확실하게 알 수 있는 방법이 있는가?
+    # 매 순간 최선의 선택이 어떻게 마지막에 최선의 선택이 되는가
+
+    while change != 0:
+        for try_coin in coins:
+            while change >= try_coin:
+                result.setdefault(try_coin, 0) # 키가없으면 (코인을 한번도 사용 X) 0개로 설정
+                result[try_coin] += 1          # 있으면 1개를 추가
+                change -= try_coin
+                total_coins += 1
+                continue
     
     return total_coins, result
 

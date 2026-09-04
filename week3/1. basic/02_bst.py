@@ -51,12 +51,25 @@ def search_bst(root, target):
         True/False
     """
     # TODO: root가 None이면 False 반환
-    pass
-    
     # TODO: 값을 찾으면 True 반환
     ## target이 작으면 왼쪽 서브트리에서 검색
     ## target이 크면 오른쪽 서브트리에서 검색
-    pass
+
+    # 생각해볼 문제. 이진 트리는 반드시 "정렬된" 트리여야한다.
+    # 루트, 자식을 기준으로 부모는 왼쪽 자식의 값보다 커야하고 오른쪽 자식의 값보다 작아야 한다.
+    # 그렇다면, 어떻게 정렬된 트리를 만드는가?
+    # 이진 트리 검색은 졸업프로젝트에서 랜덤 맵 생성으로 비슷하게 사용했었다.
+
+    if root == None:
+        return False
+
+    # 찾기만 하고 출력은 안하나? 인덱스도 없어서 뭘 반환할지는 모르겠다.전체분에 검색해 들어간 레벨?
+    if root.value == target:
+        return True
+    elif root.value > target:
+        return search_bst(root.left, target)
+    else:
+        return search_bst(root.right, target)
 
 # 테스트 케이스
 if __name__ == "__main__":

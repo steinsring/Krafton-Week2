@@ -35,7 +35,7 @@ DP 문제 풀이 순서:
 5. 구현 및 검증
 """
 
-def climb_stairs(n):
+def climb_stairs(n, dp = None):
     """
     계단 오르기 (상향식 DP)
     
@@ -46,14 +46,27 @@ def climb_stairs(n):
         n번째 계단까지 오르는 방법의 수
     """
     # TODO: 특별한 경우 처리
-    pass
-    
-    
     # TODO: dp 배열 생성 및 초기화
-    pass
-    
     # TODO: 작은 문제부터 차례로 계산
-    pass
+
+    # 상향식과 하향식의 차이는 무엇인가
+    # 각각 어디에 응용할 수 있는가
+    # 실질적으로 얼마나 줄어드는지 측정할 수 있는가
+
+    if n == 0:
+        return 1
+
+    if n == 1:
+        return 1
+
+    if dp == None:
+        dp = [1, 1]
+
+    if len(dp) > n: # len은 왜 sizeof를 반환하는가 / capacity를 반환할 수 있지 않을까 / c++에서는 벡터에서 이 두개가 중요했다
+        return dp[n]
+    
+    dpn = climb_stairs(n - 1, dp) + climb_stairs(n - 2, dp)
+    dp.append(dpn)
     
     return dp[n]
 

@@ -47,14 +47,36 @@ def bfs(graph, start):
     
     # TODO: 큐 생성 및 시작 정점 추가
     ## 방문한 정점 집합
-    pass
-
     # TODO: 큐가 빌 때까지 반복
     ## 큐에서 정점 꺼내기
     ## 인접한 정점들 확인
     ## 방문하지 않은 정점이면 큐에 추가
-    pass
+
+    queue = deque() # deque는 무엇을 사용하는가
+    queue.append(start)
+    is_visitied = set()
+    # 원래 가까운지를 판단하는 비용이 있어야하는데 여기는 정점에 저장된 값이 비용이라고 하자.
+
+    while queue:
+        # 부모 노드를 방문
+        current_vertice = queue.popleft()
+        # 이미 방문한 정점이라면 스킵
+        if current_vertice in is_visitied:
+            continue
+        is_visitied.add(current_vertice)   # 방문처리
+
+        # 노드의 자식들(또는 인접 정점들)을 큐에 추가
+        # 인접한 v들을 순회하면서 방문했는지 보고 방문하지 않았으면 큐에 추가
+        for value in graph[current_vertice]:
+            if value in is_visitied:
+                continue
+            queue.append(value)
+
+        # 결과에 방문한 정점 추가
+        visited.append(current_vertice)
     
+
+
     return visited
 
 # 테스트 케이스

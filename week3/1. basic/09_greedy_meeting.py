@@ -33,20 +33,28 @@ def select_meetings(meetings):
         (배정된 회의 개수, 선택된 회의 리스트)
     """
     # TODO: 회의가 없으면 0 반환
-    pass
-    
     # TODO: 종료 시간 기준으로 정렬
-    pass
-    
-    selected = []
-    
     # TODO: 첫 번째 회의 선택
-    pass
-    
     # TODO: 나머지 회의들 확인
     ## 이전 회의가 끝난 후 시작하는 회의만 선택
-    pass
+
+    # 이전 그리디와 무슨 차이가 있는가
+
+    if meetings == [] or meetings == None:
+        return 0
     
+    selected = []
+
+    start_sort = sorted(meetings)                      # sort와 sorted의 차이
+    end_sort = sorted(meetings, key = lambda x: x[1]) # 두번째 인덱스를 기준으로 정렬. 람다식은 어떻게 동작하는가?
+
+    selected.append(end_sort[0])
+    end_sort[0][1]
+    for meeting in start_sort:
+        if selected[-1][1] < meeting[0]:    # 마지막으로 종료되는회의보다 시작시간이 늦다면 추가
+            selected.append(meeting)
+
+
     return len(selected), selected
 
 # 테스트 케이스
