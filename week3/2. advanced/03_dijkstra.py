@@ -27,7 +27,7 @@
         |  \    /   |1
         |   v  /    v
         |    2 ---> 3 ---> 4
-        |    5      3
+        |       5      3
 
     start = 0 일 때 최단 거리:
         0 -> 0 : 0
@@ -80,6 +80,48 @@ def dijkstra(n: int, edges: list, start: int) -> list:
     # TODO: 우선순위 큐(heapq)로 BFS-like 최단경로 탐색
     # TODO: dist 반환
     pass
+
+    # 초기화 : 시작점v의 거리 = 0, v와 직접 연결된 정점들은 edge비용으로, 연결안되면 INF로
+    # 선택 : 아직 거리가 확정되지 않은 정점들 중 가장 거리가 짧은 u를 표시
+    # 갱신 : 새로 확정된 u를 거져서 가는 것(start -> u + u -> w) < 기존 (start -> w) 인 경우 갱신
+
+    # kruskal prim은? 최소신장트리에 대해서...
+    # 지하철 노선도
+
+    # u = 현재 꺼낸 정점
+    # v = u와 인접한 다음 정점
+    # w = 간선의 가중치
+
+    dist = [INF] * n
+    dist[start] = 0
+    priority_queue = []    # pq를 쓴 이유?
+
+    # grph 초기화
+    graph = {}
+    for i in range(n):
+        graph.setdefault(i, [])
+
+    for e in edges:
+        e1 = (e[1], e[2])
+        graph[e[0]].append(e1) 
+
+    heapq.heappush(priority_queue, (0, start))
+    while priority_queue:
+        d, u = heapq.heappop(priority_queue)    # d : u부터 v까지 가는 비용 / u : 출발 정점
+        if d > dist[u]:                         # u -> v 비용이 시작지점부터 u까지 가는 비용보다 크면 스킵
+            continue
+
+        for v, w in graph[u]:                   # v : 도착 정점 w : 간선 비용
+            if dist[u] + w < dist[v]:           # 기존에 시작지점부터 u까지 가는 비용 + u -> v가는 비용 < 기존 시작지점부터 v까지 가는 비용
+                dist[v] = dist[u] + w           # 갱신
+                heapq.heappush(priority_queue, (dist[v], v))    # 시작 -> v , 도착점 v
+
+    return dist
+
+    
+
+
+    
 
 
 def _format(dist):

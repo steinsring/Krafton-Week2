@@ -40,7 +40,39 @@ def lcs_length(s1: str, s2: str) -> int:
     # TODO: (len(s1)+1) x (len(s2)+1) 크기의 2차원 dp 배열을 0 으로 초기화
     # TODO: 이중 반복문으로 점화식에 따라 dp 채우기
     # TODO: dp[len(s1)][len(s2)] 반환
-    pass
+
+    # 행렬의 row는 s1의 문자를 하나씩 보고, col은 s2의 문자를 하나씩 본다.
+    # 둘다 빈 문자열부터 시작한다.
+    # 현재 비교하는 문자가 서로 동일하면 왼쪽위 대각선 값 + 1
+    # 동일하지 않으면 위나 왼쪽 값(이전까지 비교한것중 같은 문자의 개수) 중 높은값이다.
+    # 부분 수열은 순서만 유지하고 같은 문자가 몇개가 있는지를 보는것이다.
+    s1_plus_empty = " " + s1
+    s2_plus_empty = " " + s2
+    lcs = [
+        [0 for _ in range(len(s2_plus_empty))] # lcs[s1][s2]
+        for _ in range(len(s1_plus_empty))
+    ]
+
+    # 빈문자열인경우 이미 모두 0
+    for i in range(1, len(lcs)):
+        for j in range(1, len(lcs[0])):
+            char_s1 = s1_plus_empty[i]
+            char_s2 = s2_plus_empty[j]
+
+            # 비교문자열이 같음
+            if char_s1 == char_s2:
+                lcs[i][j] = lcs[i - 1][j - 1] + 1
+                continue
+
+            # 비교문자열이 다름
+            if lcs[i - 1][j] < lcs[i][j - 1]:
+                lcs[i][j] = lcs[i][j - 1]
+            else:
+                lcs[i][j] = lcs[i - 1][j]
+
+    return lcs[len(lcs) - 1][len(lcs[0]) - 1]
+                
+                
 
 
 if __name__ == "__main__":
